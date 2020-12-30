@@ -624,6 +624,32 @@ letting me know what kind of hurdles you faced in doing so. You'll find me [[htt
 our Discord server]].
 #+end_quote
 
+Migrating from vanilla Emacs should be quite a straightforward process if you already
+use =use-package=, as the underlying package management relies on it and exposes
+a macro to emulate the behaviour.
+
+The script below should give you a rough idea of which packages are included already
+with Doom Emacs, which should help you to migrate over. Any packages missing from this list will have to be linked manually.
+
+#+begin_src shell
+DOOM_EMACS_D="<path to doom-emacs>"
+MY_EMACS_D="<path to your existing config"
+
+DOOM_PACKAGE_LIST=$(find ${DOOM_EMACS_D} -type f -name "packages.el" -exec grep package! {} \; | cut -d' ' -f2 | sort | uniq | grep -v package! | sed -e 's/[()]//g')
+MISSING_PACKAGES=""
+for package in $(echo ${DOOM_PACKAGE_LIST} | tr ' ' '\n'); do
+    MATCH=$(rg "\(use-package ${package}($|\s)" ${MY_EMACS_D})
+    if [ $? -eq 0 ]; then
+        MODULE_RESULTS=$(rg "\(package! ${package}($|\s)" -g "*.el" --files-with-matches ${DOOM_EMACS_D} | rev | cut -d'/' -f2,3 | rev | sort | uniq)
+        echo -e "\nFound ${package} in $(echo ${MATCH} | cut -d':' -f1)"
+        echo -e "Package exists in Doom under: ${MODULE_RESULTS}\n"
+    fi
+done
+#+end_src
+
+The above script won't help you with configuration changes though, but similar to what the above
+script does, you can just use something like =rg= or just =grep= to see if a given setting has been modified.
+
 ** TODO From Spacemacs
 #+begin_quote
 Have you migrated from Spacemacs? Help me flesh out this section by letting me
@@ -1039,12 +1065,14 @@ modules or installed packages), you can evaluate Emacs Lisp code on-the-fly.
 While all this is helpful for reconfiguring your running Emacs session, it can
 also be helpful for debugging.
 
-*** TODO Binding keys
-+ define-key
-+ global-set-key
-+ map!
-+ undefine-key!
-+ define-key!
+*** Binding keys
+Binding keys in Doom Emacs isn't very different from regular Emacs, all the same
+functions should work as normal, although as other modules often define their
+own keybindings, a number of convenience macros have been added.
+
+You could also just wrap the invocations in a =(after! <package>)= block.
+
+For a more detailed comparison of the various macros, see the [[file:api.org][API]] reference.
 
 ** Writing your own modules
 To create your own module you need only create a directory for it in

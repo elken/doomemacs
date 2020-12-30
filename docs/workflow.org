@@ -50,6 +50,12 @@ welcome to [[https://discord.gg/qvGgnVx][join us on our Discord server]].
   - [[#as-an-x-client-twitter-email-rss-reader-etc][As an X client (twitter, email, RSS reader, etc)]]
 
 * TODO Day 1 in Doom Emacs
+Day 1 of using Doom Emacs depends on a few factors, namely how much of a beginner you are.
+If you're brand new to the glorious world of Emacs, in some ways things will be much simpler for you.
+If you already have an existing config, you might want to check out the [[file:getting_started.org::*Migrate][Getting Started]] guide.
+
+The rest of this document will be worded under the assumption that you are at least semi-new to
+the Emacs universe.
 * TODO An introduction to modal editing with Evil
 ** TODO An introduction to Vim
 ** TODO Getting around the buffer
