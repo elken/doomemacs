@@ -49,15 +49,29 @@ welcome to [[https://discord.gg/qvGgnVx][join us on our Discord server]].
   - [[#machine-learning][Machine learning]]
   - [[#as-an-x-client-twitter-email-rss-reader-etc][As an X client (twitter, email, RSS reader, etc)]]
 
-* TODO Day 1 in Doom Emacs
+* Day 1 in Doom Emacs
 Day 1 of using Doom Emacs depends on a few factors, namely how much of a beginner you are.
 If you're brand new to the glorious world of Emacs, in some ways things will be much simpler for you.
 If you already have an existing config, you might want to check out the [[file:getting_started.org::*Migrate][Getting Started]] guide.
 
 The rest of this document will be worded under the assumption that you are at least semi-new to
 the Emacs universe.
-* TODO An introduction to modal editing with Evil
-** TODO An introduction to Vim
+* An introduction to modal editing with Evil
+** An introduction to Vim
+Vim is what's known as a "modal editor", different to a typical text editing experience. It operates under a number of modes which are briefly summarised below:
+*** Normal Mode
+The primary mode for running commands and navigating. Under this mode, you are unable to insert text and all the keys have various [[https://hea-www.harvard.edu/~fine/Tech/vi.html][keybinds]] to do perform various operations,
+such as navigating around the interface or deleting objects (lines, words, paragraphs).
+*** Insert Mode
+This is the typical text editing mode you are probably used to. All the keys now act as they should in a normal text editing environment. Shortcuts can still be mapped in this mode
+behind modifiers like =Control= and =Alt=.
+*** Visual Mode
+Similar to normal mode in that the primary purpose is to navigate through the document and perform operations, but the cursor is now a block selection tool; allowing you to perform
+complex operations on blocks of text.
+*** Command Mode
+Pressing =:=   while in normal mode will switch to command mode; enabling you to invoke any number of functions normally mapped to keys, as well as doing things like saving/opening
+files and quitting
+
 ** TODO Getting around the buffer
 ** TODO Operating with operators
 ** TODO Get what you want with text objects
