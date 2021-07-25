@@ -51,8 +51,8 @@ This module has no dedicated maintainers.
 
 ** Module Flags
 + =+hack= Add support for the [[https://hacklang.org/][Hack dialect of PHP]] by Facebook.
-+ =+lsp= Enable LSP support through phpactor or intelephense. Requires the
-  ~:tools lsp~ module and the [[https://phpactor.readthedocs.io/en/develop/usage/standalone.html][phpactor server]] to be installed on your system.
++ =+lsp= Enable LSP support through phpactor or intelephense. Requires the ~:tools
+  lsp~ module and the [[https://phpactor.readthedocs.io/en/develop/usage/standalone.html][phpactor server]] to be installed on your system.
 ** Plugins
 + [[https://github.com/tomterl/php-boris][async]]
 + [[https://github.com/tomterl/php-boris][php-boris]]
@@ -78,7 +78,8 @@ Note for =+lsp=:
 2. If you use intelephense, ~node~ and ~npm~ are needed.
 
 *** MacOS
-PHP 5.5 comes prepackaged with newer versions of MacOS. These instructions are provided for reference:
+PHP 5.5 comes prepackaged with newer versions of MacOS. These instructions are
+provided for reference:
 
 #+BEGIN_SRC sh :tangle (if (doom-system-os 'macos) "yes")
 brew tap homebrew/homebrew-php
@@ -128,8 +129,8 @@ composer global require \
 npm install -g @prettier/plugin-php
 #+END_SRC
 
-You must ensure that ~~/.composer/vendor/bin~ is in ~PATH~, so these
-executables are visible to Emacs:
+You must ensure that ~~/.composer/vendor/bin~ is in ~PATH~, so these executables are
+visible to Emacs:
 
 #+BEGIN_SRC sh
 # place this in your profile file, like ~/.bash_profile or ~/.zshenv
@@ -139,7 +140,8 @@ export PATH="~/.composer/vendor/bin:$PATH"
 You may also need to regenerate your envvar file by running ~doom env~ on the
 command line.
 
-*NOTE* phpactor doesn't have to be installed via =composer=, just has to exist in your =$PATH=.
+*NOTE* phpactor doesn't have to be installed via =composer=, just has to exist in
+your =$PATH=.
 
 * Features
 ** LSP Support
@@ -150,29 +152,31 @@ There are a number of currently supported LSP servers:
 + [[https://emacs-lsp.github.io/lsp-mode/page/lsp-serenata/][Serenata]]
 + [[https://emacs-lsp.github.io/lsp-mode/page/lsp-php/][felixbecker]] (Considered unsupported)
 
-Intelephense is currently the only server that supports automatic installation, which will
-trigger either when you open a PHP project or manually invoke =lsp-install-server= through
-=M-x=.
+Intelephense is currently the only server that supports automatic installation,
+which will trigger either when you open a PHP project or manually invoke
+=lsp-install-server= through =M-x=.
 
 The others have to be installed manually and added to your =$PATH=.
 
 ** PHPUnit
-This module provides an interface to PHPUnit through a number of commands as detailed
-below. By default, it loads configuration from the root ~phpunit.xml~.
+This module provides an interface to PHPUnit through a number of commands as
+detailed below. By default, it loads configuration from the root ~phpunit.xml~.
 
 + ~phpunit-current-project~ Launch all tests for the project
 + ~phpunit-current-class~ Launch all tests for the current class/fixture
 + ~phpunit-current-test~ Launch the current test at point
 
-If for some reason, the default ~phpunit.xml~ is in a different location (or you use the ~phpunit.xml.dist~ convention)
-, the path can be changed via =phpunit-configuration-file=
+If for some reason, the default ~phpunit.xml~ is in a different location (or you
+use the ~phpunit.xml.dist~ convention) , the path can be changed via
+=phpunit-configuration-file=
 
 #+begin_src emacs-lisp
 (setq phpunit-configuration-file "phpunit.xml")
 #+end_src
 
 ** Composer
-This module provides several convenience methods for triggering composer commands:
+This module provides several convenience methods for triggering composer
+commands:
 
 | Binding             | Function                        |
 |---------------------+---------------------------------|
@@ -190,10 +194,12 @@ These are all invokable via =M-x= too.
 
 * Configuration
 ** Docker Compose
-A lot of projects rely on running inside docker compose (ie Laravel), and as such a minor mode has been configured to attempt to run tests inside
-the =php-fpm= (by default) container.
+A lot of projects rely on running inside docker compose (ie Laravel), and as
+such a minor mode has been configured to attempt to run tests inside the =php-fpm=
+(by default) container.
 
-If for some reason you wish to specify a different container, modify the ~+php/default-docker-container~ variable (ideally inside a ~.dir-locals.el~ file)
+If for some reason you wish to specify a different container, modify the
+~+php/default-docker-container~ variable (ideally inside a ~.dir-locals.el~ file)
 
 #+begin_src emacs-lisp
 ((php-mode . ((+php/default-docker-container . "php-octane"))))
@@ -201,16 +207,19 @@ If for some reason you wish to specify a different container, modify the ~+php/d
 
 * Troubleshooting
 ** "I'm missing functionality on lsp-mode"
-Unfortunately, [[https://intelephense.com/][intelephense]] currently operates under a "freemium" model, and as such requires a license for extended features.
-Once purchased, this can be (insecurely) added directly to your config:
+Unfortunately, [[https://intelephense.com/][intelephense]] currently operates under a "freemium" model, and as
+such requires a license for extended features. Once purchased, this can be
+(insecurely) added directly to your config:
 
 #+begin_src emacs-lisp
 (setq lsp-intelephense-licence-key "<key>")
 #+end_src
 
-A more recommended approach would be to utilise Emacs' own ~auth-sources~ for storing authentication info, which can also be encrypted.
+A more recommended approach would be to utilise Emacs' own ~auth-sources~ for
+storing authentication info, which can also be encrypted.
 
-Create a file in your home directory (which can optionally be encrypted, verify your ~auth-sources~ has the correct values) called ~~/.authinfo~
+Create a file in your home directory (which can optionally be encrypted, verify
+your ~auth-sources~ has the correct values) called ~~/.authinfo~
 
 #+begin_src
 machine * login intelephense password <key>

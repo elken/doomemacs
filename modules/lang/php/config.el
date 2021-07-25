@@ -129,10 +129,12 @@
   :when (featurep! +hack)
   :mode "\\.hh$")
 
+
 (use-package! composer
-  :after php-mode
-  :config
-  (map! :localleader
+  :defer t
+  :init
+  (map! :after php-mode
+        :localleader
         :map php-mode-map
         :prefix ("c" . "composer")
         "c" #'composer
@@ -144,6 +146,7 @@
         "v" #'composer-run-vendor-bin-command
         "o" #'composer-find-json-file
         "l" #'composer-view-lock-file))
+
 
 ;;
 ;; Projects
