@@ -5,7 +5,7 @@
 (package! php-extras
   :recipe (:host github :repo "arnested/php-extras")
   :pin "d410c5af663c30c01d461ac476d1cbfbacb49367")
-(package! php-mode :pin "cbf27232649c39e3749eefd23f962750bd249a49")
+(package! php-mode :pin "4b0e9f84d063c476b211ec89b2a17bddac138911")
 (package! php-refactor-mode :pin "7a794b0618df2882b1bd586fdd698dba0bc5130d")
 (package! phpunit :pin "fe6bc91c3bd8b329c6d26ad883a025f06b5121ee")
 (package! composer :pin "7c7f89df226cac69664d7eca5e913b544dc475c5")
